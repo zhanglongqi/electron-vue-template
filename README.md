@@ -46,7 +46,6 @@ npm run build:linux # uses linux as build target
 ```
 
 Optional configuration options can be found in the [Electron Builder CLI docs](https://www.electron.build/cli.html).
-
 ## Project Structure
 
 ```bash
@@ -66,13 +65,13 @@ If you have any files that you want to copy over to the app directory after inst
 
 #### Referencing static files from your main process
 
-```js
-/* Assumes src/main/static/yourFile.txt exists */
+```ts
+/* Assumes src/main/static/myFile.txt exists */
 
-const { app } = require('electron');
-const FileSystem = require('fs');
-const Path = require('path');
+import {app} from 'electron';
+import {join} from 'path';
+import {readFileSync} from 'fs';
 
-const path = Path.join(app.getAppPath(), 'static', 'yourFile.txt');
-const contents = FileSystem.readFileSync(path);
+const path = join(app.getAppPath(), 'static', 'myFile.txt');
+const buffer = readFileSync(path);
 ```
